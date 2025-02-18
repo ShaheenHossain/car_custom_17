@@ -87,8 +87,7 @@
             <xpath expr="//notebook" position="inside">
                 <page string="Car">
                     <group>
-<!--                        <field name="car_brand"/>-->
-                        <field name="vehicle_id"/>
+                        <field name="car_brand"/>
                         <field name="chassis_no"/>
                         <field name="registration_plate"/>
                     </group>
@@ -105,8 +104,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_id']" position="after">
                 <group>
-<!--                    <field name="car_brand"/>-->
-                    <field name="vehicle_id"/>
+                    <field name="car_brand"/>
                     <field name="chassis_no"/>
                     <field name="registration_plate"/>
                 </group>
@@ -118,14 +116,14 @@
     <xpath expr="//tbody[@id='sale_info_table']" position="after">
         <table class="table table-borderless table-sm">
             <tbody>
-                <tr t-if="sale_order.vehicle_id" style="font-size: 14px; white-space: nowrap;">
+                <tr t-if="sale_order.car_brand" style="font-size: 14px; white-space: nowrap;">
                     <th class="ps-0 pb-0" style="font-weight: bold; padding-right: 5px;"
-                        data-oe-model="sale.order" data-oe-id="sale_order.id" data-oe-field="vehicle_id">
+                        data-oe-model="sale.order" data-oe-id="sale_order.id" data-oe-field="car_brand">
                         Brand:
                     </th>
                     <td class="pb-0 text-wrap" style="text-align: left;">
-                        <t t-if="sale_order.vehicle_id">
-                            <t t-esc="sale_order.vehicle_id"/>
+                        <t t-if="sale_order.car_brand">
+                            <t t-esc="sale_order.car_brand"/>
                         </t>
                     </td>
                 </tr>
@@ -166,8 +164,7 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_id']" position="after">
                 <group>
-<!--                    <field name="car_brand"/>-->
-                    <field name="vehicle_id"/>
+                    <field name="car_brand"/>
                     <field name="chassis_no"/>
                     <field name="registration_plate"/>
                 </group>
@@ -178,10 +175,9 @@
         <template id="external_layout_din5008_inherit_car" inherit_id="l10n_din5008.external_layout_din5008">
         <xpath expr="//div[contains(@class, 'information_block')]/table" position="after">
             <table style="width: 100%;">
-<!--                <tr t-if="o.car_brand">-->
-                <tr t-if="o.vehicle_id">
+                <tr t-if="o.car_brand">
                     <td>Brand:</td>
-                    <td t-esc="o.vehicle_id" style="padding-right: 27px;"/>
+                    <td t-esc="o.car_brand" style="padding-right: 27px;"/>
                 </tr>
                 <tr t-if="o.chassis_no">
                     <td>Chassis No.:</td>
