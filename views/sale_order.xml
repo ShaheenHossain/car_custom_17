@@ -119,7 +119,7 @@
                 <tr t-if="sale_order.car_brand" style="font-size: 14px; white-space: nowrap;">
                     <th class="ps-0 pb-0" style="font-weight: bold; padding-right: 5px;"
                         data-oe-model="sale.order" data-oe-id="sale_order.id" data-oe-field="car_brand">
-                        Delivery Date:
+                        Brand:
                     </th>
                     <td class="pb-0 text-wrap" style="text-align: left;">
                         <t t-if="sale_order.car_brand">
@@ -130,7 +130,7 @@
                 <tr t-if="sale_order.chassis_no" style="font-size: 14px; white-space: nowrap;">
                     <th class="ps-0 pb-0" style="font-weight: bold; padding-left: 5px;"
                         data-oe-model="sale.order" data-oe-id="sale_order.id" data-oe-field="chassis_no">
-                        Aufmaß Datum:
+                        Chassis No.:
                     </th>
                     <td class="pb-0 text-wrap" style="text-align: left;">
                         <t t-if="sale_order.chassis_no">
@@ -142,7 +142,7 @@
                 <tr t-if="sale_order.registration_plate" style="font-size: 14px; white-space: nowrap;">
                     <th class="ps-0 pb-0" style="font-weight: bold; padding-left: 5px;"
                         data-oe-model="sale.order" data-oe-id="sale_order.id" data-oe-field="registration_plate">
-                        Aufmaß Datum:
+                        Registration Plate:
                     </th>
                     <td class="pb-0 text-wrap" style="text-align: left;">
                         <t t-if="sale_order.registration_plate">
@@ -176,15 +176,15 @@
         <xpath expr="//div[contains(@class, 'information_block')]/table" position="after">
             <table style="width: 100%;">
                 <tr t-if="o.car_brand">
-                    <td>Delivery Date:</td>
+                    <td>Brand:</td>
                     <td t-esc="o.car_brand" style="padding-right: 27px;"/>
                 </tr>
                 <tr t-if="o.chassis_no">
-                    <td>Aufmaß Datum:</td>
+                    <td>Chassis No.:</td>
                     <td t-esc="o.chassis_no" style="padding-right: 27px;"/>
                 </tr>
                 <tr t-if="o.registration_plate">
-                    <td>Aufmaß Datum:</td>
+                    <td>Registration Plate:</td>
                     <td t-esc="o.registration_plate" style="padding-right: 27px;"/>
                 </tr>
             </table>
