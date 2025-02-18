@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+<!--
+
+         &lt;!&ndash; Inherit and Extend portal preview invoice account  off  style="font-weight: bold;" &ndash;&gt;
+    <template id="external_layout_din5008_inherit" inherit_id="l10n_din5008.external_layout_din5008">
+        <xpath expr="//div[contains(@class, 'information_block')]/table" position="after">
+            <table style="width: 100%;">
+                <tr t-if="o.commitment_delivery_date">
+                    <td>Delivery Date:</td>
+                    <td t-esc="o.commitment_delivery_date.strftime('%d.%m.%Y')" style="padding-right: 27px;"/>
+                </tr>
+                <tr t-if="o.measurement_date">
+                    <td>Aufmaß Datum:</td>
+                    <td t-esc="o.measurement_date.strftime('%d.%m.%Y')" style="padding-right: 27px;"/>
+                </tr>
+            </table>
+        </xpath>
+    </template>
+
+    &lt;!&ndash; Inherit and Extend the Account Move Form View &ndash;&gt;
+    <record id="view_account_eugranit_form" model="ir.ui.view">
+        <field name="name">account.move.line.inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <field name="invoice_date" position="after">
+                <field name="commitment_delivery_date" string="Delivery Date" widget="date"/>
+                <field name="measurement_date" string="Aufmaß Datum" widget="date"/>
+            </field>
+        </field>
+    </record>
+
+<template id="eugranit_custom_sale_content" inherit_id="sale.sale_order_portal_content">
+    <xpath expr="//tbody[@id='sale_info_table']" position="after">
+        <table class="table table-borderless table-sm">
+            <tbody>
+                <tr t-if="sale_order.commitment_delivery_date" style="font-size: 12px; white-space: nowrap;">
+                    <th class="ps-0 pb-0" style="font-weight: bold; padding-right: 25px;"
+                        data-oe-model="sale.order" data-oe-id="sale_order.id" data-oe-field="commitment_delivery_date">
+                        Delivery Date:
+                    </th>
+                    <td class="pb-0 text-wrap" style="text-align: left;">
+                        <t t-if="sale_order.commitment_delivery_date">
+                            <t t-esc="sale_order.commitment_delivery_date.strftime('%d.%m.%Y')"/>
+                        </t>
+                    </td>
+                </tr>
+                <tr t-if="sale_order.measurement_date" style="font-size: 12px; white-space: nowrap;">
+                    <th class="ps-0 pb-0" style="font-weight: bold; padding-left: 25px;"
+                        data-oe-model="sale.order" data-oe-id="sale_order.id" data-oe-field="measurement_date">
+                        Aufmaß Datum:
+                    </th>
+                    <td class="pb-0 text-wrap" style="text-align: left;">
+                        <t t-if="sale_order.measurement_date">
+                            <t t-esc="sale_order.measurement_date.strftime('%d.%m.%Y')"/>
+                        </t>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </xpath>
+</template>
+
+&lt;!&ndash; Sale Order Form View for PDF &ndash;&gt;
+<record id="view_order_form_inherit" model="ir.ui.view">
+    <field name="name">sale.order.form.inherit</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_form"/>
+    <field name="arch" type="xml">
+        &lt;!&ndash; Add fields after Salesperson &ndash;&gt;
+        <xpath expr="//field[@name='user_id']" position="after">
+            <field name="commitment_delivery_date" string="Delivery Date"/>
+            <field name="measurement_date" string="Aufmass Datum"/>
+        </xpath>
+    </field>
+</record>
+
+-->
+
+    <record id="view_partner_car_form" model="ir.ui.view">
+        <field name="name">res.partner.car.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <!-- Insert a new page after the "Sales & Purchases" tab -->
+            <xpath expr="//notebook" position="inside">
+                <page string="Car">
+                    <group>
+                        <field name="car_brand"/>
+                        <field name="chassis_no"/>
+                        <field name="registration_plate"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="view_order_form_inherit_car" model="ir.ui.view">
+        <field name="name">sale.order.form.inherit.car</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <group>
+                    <field name="car_brand"/>
+                    <field name="chassis_no"/>
+                    <field name="registration_plate"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <template id="view_report_inherit_car" inherit_id="sale.sale_order_portal_content">
+    <xpath expr="//tbody[@id='sale_info_table']" position="after">
+        <table class="table table-borderless table-sm">
+            <tbody>
+                <tr t-if="sale_order.car_brand" style="font-size: 14px; white-space: nowrap;">
+                    <th class="ps-0 pb-0" style="font-weight: bold; padding-right: 5px;"
+                        data-oe-model="sale.order" data-oe-id="sale_order.id" data-oe-field="car_brand">
+                        Delivery Date:
+                    </th>
+                    <td class="pb-0 text-wrap" style="text-align: left;">
+                        <t t-if="sale_order.car_brand">
+                            <t t-esc="sale_order.car_brand"/>
+                        </t>
+                    </td>
+                </tr>
+                <tr t-if="sale_order.chassis_no" style="font-size: 14px; white-space: nowrap;">
+                    <th class="ps-0 pb-0" style="font-weight: bold; padding-left: 5px;"
+                        data-oe-model="sale.order" data-oe-id="sale_order.id" data-oe-field="chassis_no">
+                        Aufmaß Datum:
+                    </th>
+                    <td class="pb-0 text-wrap" style="text-align: left;">
+                        <t t-if="sale_order.chassis_no">
+                            <t t-esc="sale_order.chassis_no"/>
+                        </t>
+                    </td>
+                </tr>
+
+                <tr t-if="sale_order.registration_plate" style="font-size: 14px; white-space: nowrap;">
+                    <th class="ps-0 pb-0" style="font-weight: bold; padding-left: 5px;"
+                        data-oe-model="sale.order" data-oe-id="sale_order.id" data-oe-field="registration_plate">
+                        Aufmaß Datum:
+                    </th>
+                    <td class="pb-0 text-wrap" style="text-align: left;">
+                        <t t-if="sale_order.registration_plate">
+                            <t t-esc="sale_order.registration_plate"/>
+                        </t>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+    </xpath>
+</template>
+
+
+    <record id="view_invoice_form_inherit_car" model="ir.ui.view">
+        <field name="name">account.move.form.inherit.car</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <group>
+                    <field name="car_brand"/>
+                    <field name="chassis_no"/>
+                    <field name="registration_plate"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+        <template id="external_layout_din5008_inherit_car" inherit_id="l10n_din5008.external_layout_din5008">
+        <xpath expr="//div[contains(@class, 'information_block')]/table" position="after">
+            <table style="width: 100%;">
+                <tr t-if="o.car_brand">
+                    <td>Delivery Date:</td>
+                    <td t-esc="o.car_brand" style="padding-right: 27px;"/>
+                </tr>
+                <tr t-if="o.chassis_no">
+                    <td>Aufmaß Datum:</td>
+                    <td t-esc="o.chassis_no" style="padding-right: 27px;"/>
+                </tr>
+                <tr t-if="o.registration_plate">
+                    <td>Aufmaß Datum:</td>
+                    <td t-esc="o.registration_plate" style="padding-right: 27px;"/>
+                </tr>
+            </table>
+        </xpath>
+    </template>
+
+
+
+</odoo>
