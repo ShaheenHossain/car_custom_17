@@ -1,7 +1,7 @@
 {
     'name': 'Car Custom swiss',
     'version': '17.0.0.0.1',
-    'depends': ['base', 'mail', 'account', 'sale', 'web'],
+    'depends': ['base', 'mail', 'account', 'sale', 'web', 'fleet'],
     'data': [
         'views/sale_order.xml',
         # 'security/ir.model.access.csv',
