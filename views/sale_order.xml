@@ -1,5 +1,5 @@
-
 <?xml version="1.0" encoding="UTF-8" ?>
+
 <odoo>
 
     <record id="view_partner_car_form" model="ir.ui.view">
@@ -11,7 +11,6 @@
             <xpath expr="//notebook" position="inside">
                 <page string="Car">
                     <group>
-<!--                        <field name="car_brand"/>-->
                         <field name="vehicle_id"/>
                         <field name="chassis_no"/>
                         <field name="registration_plate"/>
@@ -29,7 +28,6 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_id']" position="after">
                 <group>
-<!--                    <field name="car_brand"/>-->
                     <field name="vehicle_id"/>
                     <field name="chassis_no"/>
                     <field name="registration_plate"/>
@@ -48,8 +46,8 @@
                         Brand:
                     </th>
                     <td class="pb-0 text-wrap" style="text-align: left;">
-                        <t t-if="sale_order.vehicle_id">
-                            <t t-esc="sale_order.vehicle_id"/>
+                        <t t-if="sale_order.vehicle_id.model_id.name">
+                            <t t-esc="sale_order.vehicle_id.model_id.name"/>
                         </t>
                     </td>
                 </tr>
@@ -105,7 +103,7 @@
 <!--                <tr t-if="o.car_brand">-->
                 <tr t-if="o.vehicle_id">
                     <td>Brand:</td>
-                    <td t-esc="o.vehicle_id" style="padding-right: 27px;"/>
+                    <td t-esc="o.vehicle_id.model_id.name" style="padding-right: 27px;"/>
                 </tr>
                 <tr t-if="o.chassis_no">
                     <td>Chassis No.:</td>
@@ -118,7 +116,5 @@
             </table>
         </xpath>
     </template>
-
-
 
 </odoo>
