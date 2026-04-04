@@ -14,6 +14,8 @@
                         <field name="vehicle_id"/>
                         <field name="chassis_no"/>
                         <field name="registration_plate"/>
+                        <field name="schadennr"/>
+
                     </group>
                 </page>
             </xpath>
@@ -31,54 +33,69 @@
                     <field name="vehicle_id"/>
                     <field name="chassis_no"/>
                     <field name="registration_plate"/>
+                    <field name="schadennr"/>
+
                 </group>
             </xpath>
         </field>
     </record>
 
     <template id="view_report_inherit_car" inherit_id="sale.sale_order_portal_content">
-    <xpath expr="//tbody[@id='sale_info_table']" position="after">
-        <table class="table table-borderless table-sm">
-            <tbody>
-                <tr t-if="sale_order.vehicle_id" style="font-size: 14px; white-space: nowrap;">
-                    <th class="ps-0 pb-0" style="font-weight: bold; padding-right: 5px;"
-                        data-oe-model="sale.order" data-oe-id="sale_order.id" data-oe-field="vehicle_id">
-                        Brand:
-                    </th>
-                    <td class="pb-0 text-wrap" style="text-align: left;">
-                        <t t-if="sale_order.vehicle_id.model_id.name">
-                            <t t-esc="sale_order.vehicle_id.model_id.name"/>
-                        </t>
-                    </td>
-                </tr>
-                <tr t-if="sale_order.chassis_no" style="font-size: 14px; white-space: nowrap;">
-                    <th class="ps-0 pb-0" style="font-weight: bold; padding-left: 5px;"
-                        data-oe-model="sale.order" data-oe-id="sale_order.id" data-oe-field="chassis_no">
-                        Chassis No.:
-                    </th>
-                    <td class="pb-0 text-wrap" style="text-align: left;">
-                        <t t-if="sale_order.chassis_no">
-                            <t t-esc="sale_order.chassis_no"/>
-                        </t>
-                    </td>
-                </tr>
+        <xpath expr="//tbody[@id='sale_info_table']" position="after">
+            <table class="table table-borderless table-sm">
+                <tbody>
+                    <tr t-if="sale_order.vehicle_id" style="font-size: 14px; white-space: nowrap;">
+                        <th class="ps-0 pb-0" style="font-weight: bold; padding-right: 5px;"
+                            data-oe-model="sale.order" data-oe-id="sale_order.id" data-oe-field="vehicle_id">
+                            Brand:
+                        </th>
+                        <td class="pb-0 text-wrap" style="text-align: left;">
+                            <t t-if="sale_order.vehicle_id.model_id.name">
+                                <t t-esc="sale_order.vehicle_id.model_id.name"/>
+                            </t>
+                        </td>
+                    </tr>
+                    <tr t-if="sale_order.chassis_no" style="font-size: 14px; white-space: nowrap;">
+                        <th class="ps-0 pb-0" style="font-weight: bold; padding-left: 5px;"
+                            data-oe-model="sale.order" data-oe-id="sale_order.id" data-oe-field="chassis_no">
+                            Chassis No.:
+                        </th>
+                        <td class="pb-0 text-wrap" style="text-align: left;">
+                            <t t-if="sale_order.chassis_no">
+                                <t t-esc="sale_order.chassis_no"/>
+                            </t>
+                        </td>
+                    </tr>
 
-                <tr t-if="sale_order.registration_plate" style="font-size: 14px; white-space: nowrap;">
-                    <th class="ps-0 pb-0" style="font-weight: bold; padding-left: 5px;"
-                        data-oe-model="sale.order" data-oe-id="sale_order.id" data-oe-field="registration_plate">
-                        Registration Plate:
-                    </th>
-                    <td class="pb-0 text-wrap" style="text-align: left;">
-                        <t t-if="sale_order.registration_plate">
-                            <t t-esc="sale_order.registration_plate"/>
-                        </t>
-                    </td>
-                </tr>
+                    <tr t-if="sale_order.registration_plate" style="font-size: 14px; white-space: nowrap;">
+                        <th class="ps-0 pb-0" style="font-weight: bold; padding-left: 5px;"
+                            data-oe-model="sale.order" data-oe-id="sale_order.id" data-oe-field="registration_plate">
+                            Registration Plate:
+                        </th>
+                        <td class="pb-0 text-wrap" style="text-align: left;">
+                            <t t-if="sale_order.registration_plate">
+                                <t t-esc="sale_order.registration_plate"/>
+                            </t>
+                        </td>
+                    </tr>
 
-            </tbody>
-        </table>
-    </xpath>
-</template>
+                    <tr t-if="sale_order.schadennr" style="font-size: 14px; white-space: nowrap;">
+                        <th class="ps-0 pb-0" style="font-weight: bold; padding-left: 5px;"
+                            data-oe-model="sale.order" data-oe-id="sale_order.id" data-oe-field="schadennr">
+                            Registration Plate:
+                        </th>
+                        <td class="pb-0 text-wrap" style="text-align: left;">
+                            <t t-if="sale_order.schadennr">
+                                <t t-esc="sale_order.schadennr"/>
+                            </t>
+                        </td>
+                    </tr>
+
+
+                </tbody>
+            </table>
+        </xpath>
+    </template>
 
 
     <record id="view_invoice_form_inherit_car" model="ir.ui.view">
@@ -88,19 +105,21 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='partner_id']" position="after">
                 <group>
-<!--                    <field name="car_brand"/>-->
+                    <!--                    <field name="car_brand"/>-->
                     <field name="vehicle_id"/>
                     <field name="chassis_no"/>
                     <field name="registration_plate"/>
+                    <field name="schadennr"/>
+
                 </group>
             </xpath>
         </field>
     </record>
 
-        <template id="external_layout_din5008_inherit_car" inherit_id="l10n_din5008.external_layout_din5008">
+    <template id="external_layout_din5008_inherit_car" inherit_id="l10n_din5008.external_layout_din5008">
         <xpath expr="//div[contains(@class, 'information_block')]/table" position="after">
             <table style="width: 100%;">
-<!--                <tr t-if="o.car_brand">-->
+                <!--                <tr t-if="o.car_brand">-->
                 <tr t-if="o.vehicle_id">
                     <td>Brand:</td>
                     <td t-esc="o.vehicle_id.model_id.name" style="padding-right: 27px;"/>
@@ -113,6 +132,12 @@
                     <td>Registration Plate:</td>
                     <td t-esc="o.registration_plate" style="padding-right: 27px;"/>
                 </tr>
+                <tr t-if="o.schadennr">
+                    <td>SchadenNr.:</td>
+                    <td t-esc="o.schadennr" style="padding-right: 27px;"/>
+                </tr>
+
+
             </table>
         </xpath>
     </template>
