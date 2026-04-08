@@ -91,7 +91,37 @@
                         </td>
                     </tr>
 
+                    <t t-if="'vehicle_id' in o._fields or 'chassis_no' in o._fields">
 
+                        <tr t-if="'vehicle_id' in o._fields and o.vehicle_id">
+                            <td>Vehicle</td>
+                            <td>
+                                <span t-field="o.vehicle_id"/>
+                            </td>
+                        </tr>
+
+                        <tr t-if="'chassis_no' in o._fields and o.chassis_no">
+                            <td>Chassis No</td>
+                            <td>
+                                <span t-field="o.chassis_no"/>
+                            </td>
+                        </tr>
+
+                        <tr t-if="'registration_plate' in o._fields and o.registration_plate">
+                            <td>Chassis No</td>
+                            <td>
+                                <span t-field="o.registration_plate"/>
+                            </td>
+                        </tr>
+
+                        <tr t-if="'schadennr' in o._fields and o.schadennr">
+                            <td>Chassis No</td>
+                            <td>
+                                <span t-field="o.schadennr"/>
+                            </td>
+                        </tr>
+
+                    </t>
                 </tbody>
             </table>
         </xpath>
